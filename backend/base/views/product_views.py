@@ -10,7 +10,6 @@ from base.models import Product
 from base.serializers import ProductSerializer
 
 
-
 from rest_framework import status
 
 
@@ -21,10 +20,10 @@ def getProducts(request):
     return Response(serializer.data)
 
 
-@api_view(['GET']) 
+@api_view(['GET'])
 def getProduct(request, pk):
-    #product = None # if use none then use <int:pk> in urls and if "" is used use <str:pk> in urls which seems to not working at the moment
-    #for i in products:
+    # product = None # if use none then use <int:pk> in urls and if "" is used use <str:pk> in urls which seems to not working at the moment
+    # for i in products:
     #    if i['_id'] == pk:
     #        product = i
     #        break
@@ -33,25 +32,27 @@ def getProduct(request, pk):
     serailizer = ProductSerializer(product, many=False)
     return Response(serailizer.data)
 
-@api_view(['POST']) 
+
+@api_view(['POST'])
 @permission_classes([IsAdminUser])
 def createProduct(request):
     user = request.user
 
     product = Product.objects.create(
-        user= user, 
-        name = 'Sample Name',
-        price = 0 ,
-        brand = 'Sample Brand',
-        countInStock = 0, 
-        category= 'Sample Category',
+        user=user,
+        name='Sample Name',
+        price=0,
+        brand='Sample Brand',
+        countInStock=0,
+        category='Sample Category',
         description='',
     )
 
-    serailizer = ProductSerializer(product, many= False)
+    serailizer = ProductSerializer(product, many=False)
     return Response(serailizer.data)
 
-@api_view(['PUT']) 
+
+@api_view(['PUT'])
 @permission_classes([IsAdminUser])
 def updateProduct(request, pk):
     data = request.data
@@ -70,9 +71,21 @@ def updateProduct(request, pk):
     return Response(serailizer.data)
 
 
-@api_view(['DELETE']) 
+@api_view(['DELETE'])
 @permission_classes([IsAdminUser])
 def deleteProduct(request, pk):
     product = Product.objects.get(_id=pk)
     product.delete()
     return Response('Product Deleted')
+
+
+@api_view(['POST'])
+def uploadImage(request):
+    data = request.data
+
+    product_id = data['product_id']
+    product = Product.objects.get(_id=product_id)
+
+    product.image = request.FILES.get('image')
+    product.save()
+    return Response("Image was uploaded")

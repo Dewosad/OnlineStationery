@@ -6,12 +6,13 @@ urlpatterns = [
 
     path('', views.getProducts, name="products"),
 
-    path('create/' , views.createProduct, name="product-create"),
-    path('<int:pk>/' , views.getProduct, name="product"),
-
-    
-    path('update/<int:pk>/' , views.updateProduct, name="product-update"),
-    path('delete/<int:pk>/' , views.deleteProduct, name="product-delete"),
+    path('create/', views.createProduct, name="product-create"),
+    path('upload/', views.uploadImage, name="image-upload"),
+    path('<int:pk>/', views.getProduct, name="product"),
 
 
-] 
+    path('update/<int:pk>/', views.updateProduct, name="product-update"),
+    path('delete/<int:pk>/', views.deleteProduct, name="product-delete"),
+
+
+]
