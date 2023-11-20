@@ -10,9 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
 
 from django.conf import settings
+
+from .juzmin import JAZZMIN_SETTINGS
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,6 +36,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -53,7 +57,6 @@ REST_FRAMEWORK = {
 
 }
 
-from datetime import timedelta
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=30),
@@ -93,7 +96,7 @@ SIMPLE_JWT = {
     "TOKEN_BLACKLIST_SERIALIZER": "rest_framework_simplejwt.serializers.TokenBlacklistSerializer",
     "SLIDING_TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainSlidingSerializer",
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
-    
+
 }
 
 MIDDLEWARE = [
@@ -136,7 +139,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-        
+
     }
 }
 
@@ -175,16 +178,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '/static/' #URL path for general static files
-MEDIA_URL = '/images/' #To render images
+STATIC_URL = '/static/'  # URL path for general static files
+MEDIA_URL = '/images/'  # To render images
 
-STATICFILES_DIRS=[
-    BASE_DIR / 'static' #pointing towards base static folder
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'  # pointing towards base static folder
 ]
 
 # To configure where to upload image or store image
 
-MEDIA_ROOT= 'static/images'
+MEDIA_ROOT = 'static/images'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
@@ -192,3 +195,6 @@ CORS_ALLOW_ALL_ORIGINS = True
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+JAZZMIN_SETTINGS = JAZZMIN_SETTINGS
