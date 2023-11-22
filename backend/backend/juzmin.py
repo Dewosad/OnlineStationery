@@ -25,7 +25,7 @@ JAZZMIN_SETTINGS = {
     "site_logo": None,
 
     # Welcome text on the login screen
-    "welcome_sign": "Welcome to Online Stationery ",
+    "welcome_sign": "Welcome to Online Stationery admin",
 
     # Copyright on the footer
     "copyright": "Online Stationery ",
