@@ -19,14 +19,13 @@ function Header() {
     <header>
       <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
         <Container>
-          {/* wrap in linkcontainer to, to remove loding while clicking link(login, cart) */}
           <LinkContainer to="/">
             <Navbar.Brand>Online Stationery</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <SearchBox />
-            <Nav className="mr-auto">
+            <SearchBox className="searchBox" />
+            <Nav className="ml-auto navBar">
               <LinkContainer to="/cart">
                 <Nav.Link>
                   <i className="fas fa-shopping-cart"></i>Cart
